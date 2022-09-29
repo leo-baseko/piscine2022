@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_is_prime.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldrieske <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/22 11:49:16 by ldrieske          #+#    #+#             */
-/*   Updated: 2022/09/24 12:37:20 by ldrieske         ###   ########.fr       */
+/*   Created: 2022/09/22 11:49:48 by ldrieske          #+#    #+#             */
+/*   Updated: 2022/09/24 09:43:19 by ldrieske         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-int	ft_sqrt(int nb)
+int	ft_is_prime(int nb)
 {
 	int	i;
 
-	if (nb == 1)
-		return (1);
-	i = 1;
-	while (i <= nb && i < 46342)
+	if (nb <= 1)
+		return (0);
+	i = 2;
+	while (i <= nb / i)
 	{
-		if ((i * i) == nb)
-			return (i);
+		if ((nb % i) == 0)
+			return (0);
 		i++;
 	}
-	return (0);
+	return (1);
 }
+
 /*#include <stdio.h>
-int	main(void)
+int main(void)
 {
-	printf("%d", ft_sqrt(2147395600));
+	printf("%d", ft_is_prime(2147483647));
 }*/

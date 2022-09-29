@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldrieske <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fgeorgea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/22 11:49:16 by ldrieske          #+#    #+#             */
-/*   Updated: 2022/09/24 12:37:20 by ldrieske         ###   ########.fr       */
+/*   Created: 2022/09/10 10:24:47 by fgeorgea          #+#    #+#             */
+/*   Updated: 2022/09/10 14:22:33 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-int	ft_sqrt(int nb)
-{
-	int	i;
 
-	if (nb == 1)
-		return (1);
-	i = 1;
-	while (i <= nb && i < 46342)
-	{
-		if ((i * i) == nb)
-			return (i);
-		i++;
-	}
-	return (0);
-}
-/*#include <stdio.h>
+void	rush(int x, int y);
+
 int	main(void)
 {
-	printf("%d", ft_sqrt(2147395600));
-}*/
+	rush(5, 5);
+	return (0);
+}

@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldrieske <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fgeorgea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/22 11:49:16 by ldrieske          #+#    #+#             */
-/*   Updated: 2022/09/24 12:37:20 by ldrieske         ###   ########.fr       */
+/*   Created: 2022/09/10 10:17:22 by fgeorgea          #+#    #+#             */
+/*   Updated: 2022/09/10 12:38:28 by fgeorgea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-int	ft_sqrt(int nb)
-{
-	int	i;
 
-	if (nb == 1)
-		return (1);
-	i = 1;
-	while (i <= nb && i < 46342)
-	{
-		if ((i * i) == nb)
-			return (i);
-		i++;
-	}
-	return (0);
-}
-/*#include <stdio.h>
-int	main(void)
+#include <unistd.h>
+
+void	ft_putchar(char left, char center, char right, int x)
 {
-	printf("%d", ft_sqrt(2147395600));
-}*/
+	write(1, &left, 1);
+	if (x >= 2)
+	{
+		while ((x - 2) > 0)
+		{
+			write(1, &center, 1);
+			x--;
+		}	
+		write(1, &right, 1);
+	}
+	write(1, "\n", 1);
+}

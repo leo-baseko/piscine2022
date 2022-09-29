@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_backtrack.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldrieske <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dagutin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/22 11:49:16 by ldrieske          #+#    #+#             */
-/*   Updated: 2022/09/24 12:37:20 by ldrieske         ###   ########.fr       */
+/*   Created: 2022/09/18 19:39:26 by dagutin           #+#    #+#             */
+/*   Updated: 2022/09/18 20:14:36 by dagutin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-int	ft_sqrt(int nb)
+
+#include "utils.h"
+
+int	ft_backtrack(char **tab, int x, int y);
 {
 	int	i;
 
-	if (nb == 1)
-		return (1);
-	i = 1;
-	while (i <= nb && i < 46342)
+	i = 0;
+	while (++i <= g_size)
 	{
-		if ((i * i) == nb)
-			return (i);
-		i++;
+		tab[x][y] = i;
+		if (x < g_size)
+		{
+			if (y < g_size)
+				return (ft_backtrack(tab, x, y + 1));
+			return (ft_backtrack(tab, x + 1, y));
+		}
 	}
+	tab[x][y] = 0;
 	return (0);
 }
-/*#include <stdio.h>
-int	main(void)
-{
-	printf("%d", ft_sqrt(2147395600));
-}*/
