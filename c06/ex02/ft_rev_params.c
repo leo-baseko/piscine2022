@@ -1,50 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ultimate_range.c                                :+:      :+:    :+:   */
+/*   ft_rev_params.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldrieske <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/23 12:19:34 by ldrieske          #+#    #+#             */
-/*   Updated: 2022/09/28 12:21:13 by ldrieske         ###   ########.fr       */
+/*   Created: 2022/09/22 15:28:43 by ldrieske          #+#    #+#             */
+/*   Updated: 2022/09/26 15:24:25 by ldrieske         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
+#include <unistd.h>
 
-int	ft_ultimate_range(int **range, int min, int max)
+int	ft_strlen(char *a)
 {
 	int	i;
-	int	*tab;
 
 	i = 0;
-	if (min >= max)
-		return (0);
-	tab = malloc(sizeof(int) * (max - min));
-	if (!range)
-		return (-1);
-	while (max > min)
-	{
-		tab[i] = min;
+	while (a[i])
 		i++;
-		min++;
-	}
-	*range = tab;
 	return (i);
 }
-/*
-#include <stdio.h>
-int	main(void)
-{
-	int *tab;
-	int	i;
-	int	size;
 
-	size = ft_ultimate_range(&tab, 2, 5);
-	i = 0;
-	while (i < size)
+int	main(int argc, char **argv)
+{
+	argc = argc - 1;
+	while (argc > 0)
 	{
-		printf("%d\n", tab[i]);
-		i++;
+		write(1, argv[argc], ft_strlen(argv[argc]));
+		write(1, "\n", 1);
+		argc--;
 	}
 	return (0);
-}*/
+}

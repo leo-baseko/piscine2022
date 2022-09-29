@@ -6,48 +6,71 @@
 /*   By: ldrieske <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:41:45 by ldrieske          #+#    #+#             */
-/*   Updated: 2022/09/26 22:26:59 by ldrieske         ###   ########.fr       */
+/*   Updated: 2022/09/28 12:07:22 by ldrieske         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
 
-char	*ft_strjoin(int size, char ***strs, char *sep)
+int	ft_tabsize(int size, char **strs, char *sep)
 {
-	char	*s1;
-	int	i;
-	int	j;
-	int	k;
+	int	x;
+	int	y;
+	int	len;
 
-	s1 = malloc(sizeof(strs));
-	if	(!s1)
-		return (0);
-	i = 0;
-	j = 0;
-	while (i < size)
+	x = 0;
+	len = 0;
+	while (sep[len])
+		len++;
+	len *= size;
+	while (x < size)
 	{
-		k = 0;
-		while (strs[i][k])
+		y = 0;
+		while (strs[x][y])
 		{
-			s1[j] = *strs[i][k];
-			j++;
-			k++;
+			len++;
+			y++;
 		}
-		k = 0;
-		while (sep[k] != '\0' && i != size - 1)
-		{
-			s1[j] = sep[k];
-			j++;
-			k++;
-		}
+		x++;
 	}
-	s1[k] = '\0';
-	return (s1);
+	if (len <= 0)
+		return (0);
+	return (len + 1);
 }
 
+char	*ft_strjoin(int size, char **strs, char *sep)
+{
+	char	*str;
+	int		i;
+	int		x;
+	int		y;
+
+	i = 0;
+	x = 0;
+	str = malloc(sizeof(char) * ft_tabsize(size, strs, sep));
+	if (!str)
+		return (0);
+	if (!size)
+		return (str);
+	while (x < size)
+	{
+		y = 0;
+		while (strs[x][y])
+			str[i++] = strs[x][y++];
+		y = 0;
+		while (sep && sep[y] && x < size - 1)
+			str[i++] = sep[y++];
+	x++;
+	}
+	str[i] = '\0';
+	return (str);
+}
+/*
 #include <stdio.h>
 int	main(int argc, char **argv)
 {
-	char *test = &argv;
-	printf("%s", ft_strjoin(argc, argv, " lol "));
-	return (0);
-}
+	char *test;
+	test = ft_strjoin(argc, argv, "---");
+	if (!test)
+		return 0;
+	printf("%s", test);
+}*/

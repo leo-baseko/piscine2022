@@ -6,16 +6,19 @@
 /*   By: ldrieske <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 19:11:28 by ldrieske          #+#    #+#             */
-/*   Updated: 2022/09/22 19:49:28 by ldrieske         ###   ########.fr       */
+/*   Updated: 2022/09/28 15:10:21 by ldrieske         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
+
 int	*ft_range(int min, int max)
 {
 	int	i;
-	int *tab;
+	int	*tab;
 
 	i = 0;
+	if (max <= min)
+		return (0);
 	tab = malloc(sizeof(int) * (max - min));
 	if (!tab)
 		return (0);
@@ -27,15 +30,18 @@ int	*ft_range(int min, int max)
 	}
 	return (tab);
 }
-
+/*
 #include <stdio.h>
 int	main(void)
 {
-	int *tableau = ft_range(2, 8);
+	int	min = -1;
+	int max = 8;
+	int *tableau = ft_range(min, max);
 	int i = 0;
-	while (tableau[i])
+	while (min < max)
 	{
 		printf("%d\n", tableau[i]);
 		i++;
+		min++;
 	}
-}
+}*/

@@ -1,15 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strs_to_tab.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldrieske <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/22 17:05:55 by ldrieske          #+#    #+#             */
-/*   Updated: 2022/09/28 12:17:26 by ldrieske         ###   ########.fr       */
+/*   Created: 2022/09/28 19:50:10 by ldrieske          #+#    #+#             */
+/*   Updated: 2022/09/29 14:58:37 by ldrieske         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
+#include "ft_stock_str.h"
 
 int	ft_strlen(char *a)
 {
@@ -40,17 +41,37 @@ char	*ft_strdup(char *src)
 	a[j] = '\0';
 	return (a);
 }
-/*
-#include <string.h>
-#include <stdio.h>
-int	main(void)
+
+void	free_pouic(t_stock_str *stru, int i)
 {
-	char *slt = "salut";
-	char *test = ft_strdup(slt);
-	printf("char initial : %s\n\n", test);
-	printf("retour fonction ft_strdup : %s\n", ft_strdup(slt));
-	printf("case memoire ft_strdup : %p\n", ft_strdup(slt));
-	printf("retour fonction strdup : %s\n", strdup(slt));
-	printf("case memoire strdup : %p\n", strdup(slt));
-	return (0);
-}*/
+	int	a;
+
+	a = 0;
+	while (a <= i)
+	{
+		free(stru[a].copy);
+		a++;
+	}
+	free(stru);
+}
+
+struct s_stock_str	*ft_strs_to_tab(int ac, char **av)
+{
+	int			i;
+	t_stock_str	*stru;
+
+	i = 0;
+	stru = malloc(sizeof(t_stock_str) * (ft_strlen(*av) + 1));
+	if (!stru)
+		return (NULL);
+	while (i < ac)
+	{
+		stru[i].size = ft_strlen(av[i]);
+		stru[i].str = av[i];
+		stru[i].copy = ft_strdup(av[i]);
+		if (stru[i].copy == 0)
+			free_pouic(stru, i);
+		i++;
+	}
+	return (stru);
+}
